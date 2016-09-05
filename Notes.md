@@ -1,14 +1,14 @@
-Project Notes: 
+##Project Notes: 
 
 
-Potential Title: Day with your Dog
-Slogan: Lifestyle for your Dog, Everything Dog-Friendly. 
+####Potential Title: Day with your Dog
+####Slogan: Lifestyle for your Dog, Everything Dog-Friendly. 
 
-Purpose: To locate pet-friendly everything. There are a few similar App is BarkHappy, and Fetch (https://github.com/florenceloi/hackbright-project). 
+####Purpose: To locate pet-friendly everything. There are a few similar App is BarkHappy, and Fetch (https://github.com/florenceloi/hackbright-project). 
 
 
 
-Topics to include: 
+####Topics to include: 
 
 Dog-Friendly: 
 * Hotels, 
@@ -29,16 +29,16 @@ APIs Needed:
 * Provab for hotels
 
 
-1st Week: 
+####1st Week: 
 * Design Layout
 * Add Google API and then use Yelp API to pull data for restaurants and parks
 * Start with two catagories, restaurants(bars) and parks. 
 * Start with Bars (since there is no filtering out of food type)
 
-1st Week Assignments: 
--Christine: 512 API research
--Saidi: YELP API research
--Nigel: Mock up basic site using Materialize
+####1st Week Assignments: 
+* Christine: 512 API research
+* Saidi: YELP API research
+* Nigel: Mock up basic site using Materialize
 
 
 2nd Week: 
