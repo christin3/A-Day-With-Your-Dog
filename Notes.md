@@ -71,14 +71,46 @@ APIs Needed:
 * When User hovers on the map it would put a drop shadow on the current card selected basically make it 'featured'
 * If the user clicks on either the map or a card it will bring the user to a detailed page of the topic (bar/restaurant). 
 
+Notes: 
+* Node - need to install Node on computer (4, 5, 6) and install NPM  (OR USE AJAX)
+  * Use Node to pull the data from the API and store in Firebase. Once you get the data parse it and then store in Firebase. 
+  * Need the Request-Proimise package - This allows you to make a request with a URL
 
 
 
 Future Ideas: 
 * Add Coupons
+* User Login to save favorite
 * Add Image of the DAY - APOD
 * Add Open Table to book your table
 * Add hotel bookings
+* Incorporate Instagram to post
+* Look into adding Rover (dog walking app) on the site
+
+
+Presentation Requirements: 
+One in which you explain in detail:
+
+* Your overall application’s concept
+
+* The motivation for its development
+
+* Your design process
+
+* The technologies you used (and briefly how they work)
+
+* A demonstration of its functionality
+
+* Directions for future development
+
+
+
+Graded on: 
+* Concept
+* Design
+* Functionalit
+* Collabortion
+* Presenation
 
 
 
