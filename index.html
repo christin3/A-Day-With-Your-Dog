@@ -1,24 +1,528 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Overal Color of background -->
+    <meta name="theme-color" content="#2196F3">
+
+    <title>Day With Your Dog</title>
+
+      <!-- CSS RESET template -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <!-- FONT AWESOME LINK -->
+    <link href="assets/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+
+    <!-- CSS  -->
+    <link href="assets/css/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/custom-min.css" type="text/css" rel="stylesheet" >
+
+    <!-- OUR STYLE SHEET -->
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+
+
 </head>
 
-<body>
-    <!-- Javascript -->
-    <script type="text/javascript">
-    </script>
-</body>
+<!-- ================= START OF HTML ================= -->
+<body id="top" class="scrollspy">
 
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+</div>
+
+    <!-- ================= NAVIGATION ================= -->
+
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="#" id="logo-container" class="brand-logo">Day With Your Dog</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#intro">Map</a></li>
+                    <li><a href="#work">Your Day</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#intro">Map</a></li>
+                    <li><a href="#work">Your Day</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- ================= SPLASH PAGE ANIMATION ================= -->
+<!-- ADD A SEARCH BAR FEATURE HERE UNDER THE ANIMATION -->
+<!-- Could ALSO ADD A SLIDER to DISPLAY DIFFERENT DOG IMAGES -->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="text_h center header cd-headline letters type">
+            
+            <span class="cd-words-wrapper waiting">
+                <b class="is-visible">Eat</b>
+                <b>Drink</b>
+                <b>Shop</b>
+                <b>Play</b>
+                <b>Day</b>
+            </span>
+            <span>with your Dog</span> 
+        </h1>
+        <!-- Possible SEARCH BAR -->
+        <!-- Right now the text populates upwards and not in the box -->
+         <nav>
+            <div class="nav-wrapper blue darken-4">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label for="search"><i class="mdi-action-search"></i></label>
+                  <i class="mdi-navigation-close"></i>
+                </div>
+              </form>
+            </div>
+          </nav>
+          <!-- Possible Dropdown Menu -->
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-button btn btn-large blue lighten-3 center-align' href='#' data-activates='dropdown1'><i class="mdi-action-search"></i>Plan Your Day</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!" class="blue-text text-lighten-3">EAT.</a></li>
+            <li><a href="#!" class="blue-text text-lighten-3">DRINK.</a></li>
+            <li><a href="#!" class="blue-text text-lighten-3">PLAY.</a></li>
+            <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
+            </ul>
+            </div>
+
+
+</div>
+
+<!-- ================= MAP SECTION ================= -->
+<!--This will be the MAP SECTION-->
+<div id="intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="span_h2"> Phasellus  </span>vestibulum lorem risus, nec suscipit lorem <span class="span_h2"> laoreet quis.</span> </h2>
+            </div>
+
+            <div  class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-image-flash-on"></i>
+                    <h5 class="promo-caption">Speeds up development</h5>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-social-group"></i>
+                    <h5 class="promo-caption">User Experience Focused</h5>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-hardware-desktop-windows"></i>
+                    <h5 class="promo-caption">Fully responsive</h5>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= CARD DISPLAY - whatever is searched ================= -->
+<!-- Will need to update this piece dynamically based on AJAX call to our firebase database  -->
+<div class="section scrollspy" id="work">
+    <div class="container">
+        <h2 class="header text_b">Eat. Shop. Play.</h2>
+        <!-- Need to dynamically update these pics, should have a placeholder here, like featured bars or parks,etc.  -->
+        <div class="row" id="cardsAppearHere">
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project1.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project2.jpeg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project3.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project4.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project5.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/project6.jpeg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="#">Project link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= PARALLAX ONE ================= -->
+<!-- This is the image that scrolls behind the text. Find a cool royalty free image -->
+<div class="parallax-container">
+    <div class="parallax"><img src="assets/img/bordercollie.jpg"></div>
+</div>
+
+
+<!-- ================= OUR INSPIRATION ================= -->
+<!-- The Inspiration - OUR DOGS -->
+<div class="section scrollspy" id="team">
+    <div class="container">
+        <h2 class="header text_b"> Our Inspiration </h2>
+        <div class="row">
+        <!-- AVATAR ONE- Saidi-->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/s_dog.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Nico<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Saidi's Loyal Poodle</a></em></small></span>
+                    </div>
+                </div>
+            </div>
+        <!-- AVATAR TWO  - Christine-->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/c_dog2.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Zelda<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Christine's Faithful Hound</a></em></small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        <!-- AVATAR THREE - NIGEL  -->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/n_dog.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Maggie <br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Nigel's Trusty Schnauzer</a></em></small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= TEAM SECTION ================= -->
+
+<!-- Could do two sections, one for inspiration and include the dogs and the second would be the Team -->
+<div class="section scrollspy" id="team">
+    <div class="container">
+        <h2 class="header text_b"> The TEAM</h2>
+        <div class="row">
+        <!-- AVATAR ONE- Saidi-->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/avatar2.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">SAIDI<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Role</a></em></small></span>
+                        <p>
+                        <!-- NEED TO CHANGE ALL OF LINKS -->
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <!-- AVATAR TWO  - Christine-->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/avatar4.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Christine<br/>
+                            <small><em><a class="red-text text-darken-1" href="#"> Role</a></em></small>
+                        </span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <!-- AVATAR THREE - NIGEL  -->
+            <div class="col s12 m4">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/avatar3.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Nigel<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Role</a></em></small></span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+<!--             <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/img/avatar4.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Robin<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small></span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= PARALLAX TWO ================= -->
+<!-- This is the image that scrolls behind the text. Find a cool royalty free image -->
+<div class="parallax-container">
+    <div class="parallax"><img src="assets/img/borderdane2.jpg"></div>
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<!-- TO DO : GET The SUBMIT BUTTON TO WORK -->
+<footer id="contact" class="page-footer default_color scrollspy">
+    <div class="container">  
+        <div class="row">
+            <div class="col l6 s12">
+                <form class="col s12" action="contact.php" method="post">
+                <h2 class="white-text"> Contact Us </h2>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="mdi-action-account-circle prefix white-text"></i>
+                            <input id="icon_prefix" name="name" type="text" class="validate white-text">
+                            <label for="icon_prefix" class="white-text">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-communication-email prefix white-text"></i>
+                            <input id="icon_email" name="email" type="email" class="validate white-text">
+                            <label for="icon_email" class="white-text">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi-editor-mode-edit prefix white-text"></i>
+                            <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
+                            <label for="icon_prefix2" class="white-text">Message</label>
+                        </div>
+                        <div class="col offset-s7 s5">
+                            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
+                                <i class="mdi-content-send right white-text"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="col l3 s12"> -->
+                <!-- <h5 class="white-text">joashpereira.com</h5> -->
+              <!--   <ul>
+                    <li><a class="white-text" href="http://www.joashpereira.com/">Home</a></li>
+                    <li><a class="white-text" href="http://www.joashpereira.com/blog">Blog</a></li>
+                </ul>
+            </div> -->
+            <div class="col l3 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="https://www.behance.net/joashp">
+                            <i class="small fa fa-behance-square white-text"></i> Behance
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
+                            <i class="small fa fa-facebook-square white-text"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://github.com/joashp">
+                            <i class="small fa fa-github-square white-text"></i> Github
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://www.linkedin.com/in/joashp">
+                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright default_color">
+        <div class="container">
+             Lifestyle curated by <a class="white-text" href="#">The CNS Galaxy Group</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a>
+            <!-- Made by <a class="white-text" href="http://joashpereira.com">Joash Pereira</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a> -->
+        </div>
+    </div>
+</footer>
+
+
+<!-- ================= SCRIPTS================= -->
+    <!-- Template JS files -->
+    <script src="assets/javascript/plugin-min.js"></script>
+    <script src="assets/javascript/custom-min.js"></script>
+
+    <!-- Custon JS File -->
+    <script src="assets/javascript/app.js"></script>
+
+     <!-- Underscore JS library CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- Templating Using Underscore Library -->
+      <script type="text/template" id="giphyTmpl">
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="<%= result.images.fixed_height_small_still.url %>" data-still="<%= result.images.fixed_height_small_still.url %>" data-animate="<%= result.images.fixed_height_small.url %>" data-state="still">
+                    </div>
+                    <div class="card-content"><p class="rate"> Rating: <%= result.rating %></p>
+                    </div>
+                </div>
+            </div>
+    </script>
+
+
+    </body>
 </html>
-<style type="text/css">
-</style>
