@@ -45,15 +45,22 @@
 
 
 // ========YELP API FUNCTION===========
+yelpPull();
 
-function = yelpPull() {
+function yelpPull() {
       // API DATA
-      var yelp = $(this).data('name');
+      var yelp = $(this).data();
       // Add the YELP QUERY SEARCH url 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + star + "&api_key=dc6zaTOxFJmzC&limit=12";
+
+        var queryURL= "https://api.yelp.com/v3/businesses/search?term=delis&latitude=37.786882&longitude=-122.399972"
+
 
         // Ajax call that pulls the data from the api
         $.ajax({
+                headers: {
+                  Authorization: 'Bearer ZnwGiu-0nb6TYZyFYQUzA8gsqcbMLT0vjUYDMC5qW00zIxWtum0xCXcW23EXU3lH8o7Iuw7b2or7rWbwW0oNYIhDTv_UkDLX7gvqXfOYd0gKAEfdhpOyFm56yzvUV3Yx',
+                  //'Access-Control-Allow-Origin': '*'
+                },
                 url: queryURL,
                 method: 'GET'
             })
@@ -64,6 +71,7 @@ function = yelpPull() {
               //Sets the variable results = the entire data set coming from the API
               var results = response.data; 
 
+              console.log(results);
               // Empties the cards view  before adding a new buttons
               // $('#cardsAppearHere').empty();
 
@@ -91,8 +99,14 @@ function = yelpPull() {
       });
     } 
 
-$(document).on('click', '.star', giphyObj.displayStarInfo);
-    console.log(this);
+//$('.button1').on('click', function(){
+  
+  //yelpPull();
+ // console.log(this);
+
+//});
+//$(document).on('click', '.star', giphyObj.displayStarInfo);
+    
 
 
 // ========GOOGLE PLACE API FUNCTION===========
