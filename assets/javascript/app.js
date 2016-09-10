@@ -1,8 +1,6 @@
 
 
-// Google Maps API KEY
-
-
+// ========Google Maps API FUNCTION===========
 
 // Function to locate the user using Google MAPS API
 // Note: This example requires that you consent to location sharing when
