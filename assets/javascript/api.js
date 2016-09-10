@@ -59,7 +59,7 @@ function yelpPull() {
         $.ajax({
                 headers: {
                   Authorization: 'Bearer ZnwGiu-0nb6TYZyFYQUzA8gsqcbMLT0vjUYDMC5qW00zIxWtum0xCXcW23EXU3lH8o7Iuw7b2or7rWbwW0oNYIhDTv_UkDLX7gvqXfOYd0gKAEfdhpOyFm56yzvUV3Yx',
-                  //'Access-Control-Allow-Origin': '*'
+                  'Access-Control-Allow-Origin': '*'
                 },
                 url: queryURL,
                 method: 'GET'
