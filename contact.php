@@ -2,7 +2,7 @@
 
 if(isset($_POST['email'])) {
 
-    $email_to = "joash.pereira@gmail.com";
+    $email_to = "cnsgalaxygroup@gmail.com";
  
     $email_subject = "Website Contact";
 
@@ -83,7 +83,7 @@ if(isset($_POST['email'])) {
  
  
  
-Thank you for contacting me. Will be in touch with you very soon.
+Thank you for contacting the CNS Galaxy Group and for your interest in Day With Your Dog. Will be in touch with you very soon.
  
  
  
