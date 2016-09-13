@@ -3,6 +3,8 @@
 
 //  ======= YELP API NODE CALL ===============
 // Request API access: http://www.yelp.com/developers/getting_started/api_access
+
+// require('dotenv').config();
 var Yelp = require('yelp');
 
 var config = require('./config.json');
@@ -12,29 +14,29 @@ var yelp = new Yelp({
   consumer_key: config.consumerKey,
   consumer_secret: config.consumerSecret,
   token: config.token,
-  token_secret: config.tokenSecret,
+  token_secret: config.tokenSecret
 });
 
 // See http://www.yelp.com/developers/documentation/v2/search_api
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
-})
-.catch(function (err) {
-  console.error(err);
-});
+// yelp.search({ term: 'food', location: 'Montreal' })
+// .then(function (data) {
+//   console.log(data);
+// })
+// .catch(function (err) {
+//   console.error(err);
+// });
 
-// See http://www.yelp.com/developers/documentation/v2/business
-yelp.business('yelp-san-francisco')
-  .then(console.log)
-  .catch(console.error);
+// // See http://www.yelp.com/developers/documentation/v2/business
+// yelp.business('yelp-san-francisco')
+//   .then(console.log)
+//   .catch(console.error);
 
-yelp.phoneSearch({ phone: '+15555555555' })
-  .then(console.log)
-  .catch(console.error);
+// yelp.phoneSearch({ phone: '+15555555555' })
+//   .then(console.log)
+//   .catch(console.error);
 
-// A callback based API is also available:
-yelp.business('yelp-san-francisco', function(err, data) {
-  if (err) return console.log(error);
-  console.log(data);
-});
+// // A callback based API is also available:
+// yelp.business('yelp-san-francisco', function(err, data) {
+//   if (err) return console.log(error);
+//   console.log(data);
+// });
