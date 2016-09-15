@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/christin3/CNS-Galaxy-Group#readme",
   "dependencies": {
+    "firebase": "^3.4.0",
+    "google-cloud": "^0.40.0",
     "yelp": "^1.0.1"
   }
 }
