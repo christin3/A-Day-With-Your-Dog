@@ -15,6 +15,10 @@
 
     <!-- FONT AWESOME LINK -->
     <link href="assets/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>   
+     <!-- ======GeoFire ===== -->
+    <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script>
 
     <!-- CSS  -->
     <link href="assets/css/plugin-min.css" type="text/css" rel="stylesheet">
@@ -79,8 +83,8 @@
                 <b>Eat</b>
                 <b>Drink</b>
                 <b>Shop</b>
-                <b>Play</b>
-                <b>Socialize</b>
+                <!-- <b>Play</b>
+                <b>Socialize</b> -->
                 
 
             </span>
@@ -120,12 +124,12 @@
                 <a class='dropdown-button btn btn-large blue lighten-3 center-align' href='#' data-activates='dropdown1'>Choose Your Adventure <span> <i class="fa fa-angle-double-down"></i><span></a>
 
                 <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!" class="blue-text text-lighten-3">EAT.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">DRINK.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">PLAY.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">SOCIALIZE.</a></li>
+                <ul id='dropdown1' class='dropdown-content categories'>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="eat">EAT.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="bars">DRINK.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="parks">PLAY.</a></li>
+                    <!-- <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3">SOCIALIZE.</a></li> -->
                 </ul>
             </div>
 
@@ -211,7 +215,7 @@
                         <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -236,7 +240,7 @@
                         <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -262,7 +266,7 @@
                         <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info <i class="mdi-navigation-more-vert right"></i></span>
@@ -550,22 +554,28 @@
 
 <!-- ================= SCRIPTS================= -->
 
+
+    <!-- Custom JS File -->
+    <script src="assets/javascript/api.js"></script>
+  <!--   <script src="assets/javascript/firebase.js"></script> -->
+    <script src="assets/javascript/clickhandler.js"></script>
+
     <!-- GOOGLE API MAPS SCRIPT LINK -->
       <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM9Sy-q5y4LdWziDiHZ03uspNuxXd7lUo&callback=initMap">
     </script>
 
     <!-- ========FIREBASE CDN============ -->
-    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script> -->
+
+    <!-- ======GeoFire ===== -->
+    <!-- <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script> -->
 
     <!-- Template JS files -->
     <script src="assets/javascript/plugin-min.js"></script>
     <script src="assets/javascript/custom-min.js"></script>
 
-    <!-- Custon JS File -->
-    <script src="assets/javascript/api.js"></script>
-    <script src="assets/javascript/firebase.js"></script>
-    <script src="assets/javascript/clickhandler.js"></script>
+
 
      <!-- Underscore JS library CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
