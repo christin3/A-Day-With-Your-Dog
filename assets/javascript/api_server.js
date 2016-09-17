@@ -12,11 +12,11 @@ var firebase = require('firebase');
 
 // Initialize Firebase
 var firebaseConfig = {
-    apiKey: "AIzaSyARROp_Ut8-hhwGamvPheYYKpSrmocN-G8",
-    authDomain: "yelp-4707f.firebaseapp.com",
-    databaseURL: "https://yelp-4707f.firebaseio.com",
-    storageBucket: "yelp-4707f.appspot.com",
-    messagingSenderId: "165185315400"
+    apiKey: "AIzaSyAv-6bOhqHPkkst-Aw7ULPb-xvTqHqTpeo",
+    authDomain: "bars-backup.firebaseapp.com",
+    databaseURL: "https://bars-backup.firebaseio.com",
+    storageBucket: "bars-backup.appspot.com",
+    messagingSenderId: "149078553518"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -30,14 +30,14 @@ var yelp = new Yelp({
   token_secret: config.tokenSecret
 });
 
-var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '78712', '78717', '78719', '78721', '78722', '78723', '78724', '78725', '78726', '78727', '78728', '78729', '78730', '78731', '78732', '78733', '78734', '78735', '78736', '78737', '78738', '78739', '78741', '78742', '78744', '78745', '78746', '78747', '78748', '78749', '78750', '78751', '78752', '78753', '78754', '78756', '78757', '78758', '78759', '78799'];
+// var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '78712', '78717', '78719', '78721', '78722', '78723', '78724', '78725', '78726', '78727', '78728', '78729', '78730', '78731', '78732', '78733', '78734', '78735', '78736', '78737', '78738', '78739', '78741', '78742', '78744', '78745', '78746', '78747', '78748', '78749', '78750', '78751', '78752', '78753', '78754', '78756', '78757', '78758', '78759', '78799'];
 
-for (var k = 0; k < AustinZipcodes.length; k++){
-	var zipcode = AustinZipcodes[k];
+// for (var k = 0; k < AustinZipcodes.length; k++){
+// 	var zipcode = AustinZipcodes[k];
 
-	for (var j = 0; j < 50; j++){
+	// for (var j = 0; j < 50; j++){
 		//See http://www.yelp.com/developers/documentation/v2/search_api
-		yelp.search({ term: 'bar dogs allowed', location: zipcode, offset: j})
+		yelp.search({ term: 'bar dogs allowed', location: 78757, limit: 4})
 		.then(function (data) {
 			console.log(data);
 			var results = data.businesses;
@@ -52,8 +52,12 @@ for (var k = 0; k < AustinZipcodes.length; k++){
 		  		var address = results[i].location.display_address["0"] + ", " + results[i].location.display_address["2"];
 		  		var phone = results[i].display_phone;
 		  		var yelpURL = results[i].url;
+		  		var id = results[i].id;
 
-				database.ref('bars').push({
+		  		console.log(results);
+
+				database.ref('bars/' + id).set({
+					id: id,
 					name: name,
 					image: image,
 					loc:{
@@ -69,5 +73,5 @@ for (var k = 0; k < AustinZipcodes.length; k++){
 		.catch(function (err) {
 		  console.error(err);
 		});
-	}
-}
+ // 	}
+ // }
