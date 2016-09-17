@@ -1,6 +1,7 @@
 // ====== Questions =========
 // 1. Can we use local storage to house the location of the user instead of using firebase? 
-// 2. Look into .getkey and ask about promises (RSVP)
+// 2. Look into .getkey and ask about promises (RSVP), need to retreive user location only testing with dummy location
+// 3. Maybe looking at storing the lat lng in two seperate fields for easy access?
 
  // ========Initialize Firebase=========
 
@@ -34,14 +35,26 @@ var geoFire = new GeoFire(databasePush);
 // Global variables of pos (which is the user location and username in order to retrieve later)
 var pos;
 var username ="";
+// Because our map is at a zoom of 13 which is 2 miles, 2 miles in km is 3.21869 Km / 2 = 1.609345
+// Will use this radius to determine what results are populated into the map and cards (only this <= this radiu)
+var resultRadius = 1.609345;
+var resultsArray = [];
 
  // Is the array where the user location is stored for manipulation later
 var userLocation= [30.22655007765157, -97.86187313256364];
+var lat1 = userLocation[0];
+var lng1 = userLocation[1];
+
+
+
+console.log("HEYYYYYY this is user lat: " + lat1);
+
+// ================ FUNCTIONS =================
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
-    zoom: 6
+    zoom: 13
   });
   var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -82,21 +95,35 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-}
+};
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
-}
+};
+
+// function getDistanceInKm(){
+//   var R = 6371; // Radius of the earth in km
+//   var dLat = deg2rad(lat2-lat1);  // deg2rad below
+//   var dLng = deg2rad(lng2-lng1); 
+//   var a = 
+//     Math.sin(dLat/2) * Math.sin(dLat/2) +
+//     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+//     Math.sin(dLng/2) * Math.sin(dLng/2)
+//     ; 
+//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+//   var distance = R * c; // Distance in km
+//   return distance;
+// };
 
 
-// When the user clicks say drinks, it would then look into  'bars' in the database. It would need
-// to loop through each child  (like a for each) to see if the location of the bars is within 
-// a certain radius . Use the haversine formula or something to compare the locations to see if they
-// are within a certain radius (need to set the radius)
 
+function deg2rad(degrees) {
+  return degrees * (Math.PI /180); 
+  
+};
 // This will handle the user click in the dropdown
 $('.categories a').on('click', getData);
 
@@ -106,11 +133,6 @@ function getData (){
   console.log("User Click: " + category);
 };
 
-// Need to figure out whether we should pull out all of the data set from firebase then loop over it to 
-// find the location or loop over it in firebase
-// ChildAction function would be what looks at the radius
-// 1. Start by figuring out how to access each location
-// 
 
 // Call the get user lcoation function
 // getUserLoc();
@@ -137,20 +159,63 @@ function getData (){
 // to will be called synchronously with a DataSnapshot for each child:
 // Pull out the information of the bars = then use the haversine forlumla to compare user Location and bar location. 
 // Also need to set a radius to calculate distance (look at Geofire to see if call calculate it)
-var query = dbQuery.ref("bars").orderByKey();
+var query = dbQuery.ref("bars");
+// Tie this query to the user click data-category "bars" for example
 query.once("value")
   .then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       // key will be the item the first time and the second item the second time
       var key = childSnapshot.key;
-      // childData will be the actual contents of the child
-      var childData = childSnapshot.val("loc");
-      console.log("This is the database child snapshot: " + JSON.stringify(childSnapshot.val()));
+      // child lat and lng will be the actual contents of the child loc
+      var childLat = childSnapshot.val().loc.lat;
+      var childLng = childSnapshot.val().loc.lng;
+      console.log("This is the bar lat: " + JSON.stringify(childLat) + " and the bar lng: " + JSON.stringify(childLng));
+      // initializing the variables of locations lat and lng
+      var lat2= childLat;
+      var lng2  = childLng;
+      // Call the haversine formula that is defined above
+      function getDistanceInKm(){
+        var R = 6371; // Radius of the earth in km
+        var dLat = deg2rad(lat2-lat1);  // deg2rad below
+        var dLng = deg2rad(lng2-lng1); 
+        var a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+          Math.sin(dLng/2) * Math.sin(dLng/2)
+          ; 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var distance = R * c; // Distance in km
+        return distance;
+        console.log("Line: 178, Distance between user location and bar: " + distance);  
+      };         
+
+      // Add the if logic to take the bar child if the radius is <= to result Radius
+      // if(distance <= resultRadius) {
+      //   // needs to pull out that entire object out and push it to an array
+      //   var resultsData = childSnapshot.val();
+      //   resultsArray.push(resultsData);
+      // }
+
   });
 });
 
 
 
+// // Working code that retreives each bars lat and lng
+// var query = dbQuery.ref("bars");
+// query.once("value")
+//   .then(function(snapshot) {
+//     snapshot.forEach(function(childSnapshot) {
+//       // key will be the item the first time and the second item the second time
+//       var key = childSnapshot.key;
+//       // child lat and lng will be the actual contents of the child loc
+//       var childLat = childSnapshot.val().loc.lat;
+//       var childLng = childSnapshot.val().loc.lng;
+//       console.log("This is the bar lat: " + JSON.stringify(childLat) + " and the bar lng: " + JSON.stringify(childLng));
+//       // Use the havesine formula to calculate the distance
+
+//   });
+// });
 // ======== 1st GOOGLE API AJAX FUNCTION===========
 // googlePlacesPull();
 // var petStores = [];
