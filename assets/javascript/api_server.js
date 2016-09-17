@@ -12,11 +12,11 @@ var firebase = require('firebase');
 
 // Initialize Firebase
 var firebaseConfig = {
-	apiKey: "AIzaSyA1XI9xxScQ1bRjHmi8c9mVbzFpADIICLM",
-	authDomain: "yelptest-bcf7a.firebaseapp.com",
-	databaseURL: "https://yelptest-bcf7a.firebaseio.com",
-	storageBucket: "yelptest-bcf7a.appspot.com",
-	messagingSenderId: "595638809354"
+    apiKey: "AIzaSyARROp_Ut8-hhwGamvPheYYKpSrmocN-G8",
+    authDomain: "yelp-4707f.firebaseapp.com",
+    databaseURL: "https://yelp-4707f.firebaseio.com",
+    storageBucket: "yelp-4707f.appspot.com",
+    messagingSenderId: "165185315400"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -30,41 +30,44 @@ var yelp = new Yelp({
   token_secret: config.tokenSecret
 });
 
-//See http://www.yelp.com/developers/documentation/v2/search_api
-yelp.search({ term: 'bar dogs allowed', location: 'Austin', offset: 2})
-.then(function (data) {
-	console.log(data);
-	var results = data.businesses;
+var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '78712', '78717', '78719', '78721', '78722', '78723', '78724', '78725', '78726', '78727', '78728', '78729', '78730', '78731', '78732', '78733', '78734', '78735', '78736', '78737', '78738', '78739', '78741', '78742', '78744', '78745', '78746', '78747', '78748', '78749', '78750', '78751', '78752', '78753', '78754', '78756', '78757', '78758', '78759', '78799'];
+
+for (var k = 0; k < AustinZipcodes.length; k++){
+	var zipcode = AustinZipcodes[k];
+
+	for (var j = 0; j < 50; j++){
+		//See http://www.yelp.com/developers/documentation/v2/search_api
+		yelp.search({ term: 'bar dogs allowed', location: zipcode, offset: j})
+		.then(function (data) {
+			console.log(data);
+			var results = data.businesses;
 
 
-	for (var i = 0; i < results.length; i++){
+			for (var i = 0; i < results.length; i++){
 
- 		var name = results[i].name;
-        var image = results[i].snippet_image_url;
-  		var lat = results[i].location.coordinate.latitude;
-  		var lng = results[i].location.coordinate.longitude;
-  		var address = results[i].location.display_address["0"] + ", " + results[i].location.display_address["2"];
-  		var phone = results[i].display_phone;
-  		var yelpURL = results[i].url;
+		 		var name = results[i].name;
+		        var image = results[i].snippet_image_url;
+		  		var lat = results[i].location.coordinate.latitude;
+		  		var lng = results[i].location.coordinate.longitude;
+		  		var address = results[i].location.display_address["0"] + ", " + results[i].location.display_address["2"];
+		  		var phone = results[i].display_phone;
+		  		var yelpURL = results[i].url;
 
-		database.ref('bars').push({
-			name: name,
-			image: image,
-			loc:{
-				lat: lat,
-				lng: lng},
-			address: address,
-			phone: phone,
-			url: yelpURL
+				database.ref('bars').push({
+					name: name,
+					image: image,
+					loc:{
+						lat: lat,
+						lng: lng},
+					address: address,
+					phone: phone,
+					url: yelpURL
+				});
+		  }
+
+		})
+		.catch(function (err) {
+		  console.error(err);
 		});
-  }
-
-  console.log(bars);
-
-})
-.catch(function (err) {
-  console.error(err);
-});
-
-
-
+	}
+}
