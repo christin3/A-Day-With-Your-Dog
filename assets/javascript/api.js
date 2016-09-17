@@ -1,16 +1,14 @@
 // ====== Questions =========
-// 1. Can we use local storage to house the location of the user instead of using firebase? 
-// 2. Look into .getkey and ask about promises (RSVP), need to retreive user location only testing with dummy location
-// 3. Maybe looking at storing the lat lng in two seperate fields for easy access?
+
 
  // ========Initialize Firebase=========
 
 var config = {
-  apiKey: "AIzaSyA1XI9xxScQ1bRjHmi8c9mVbzFpADIICLM",
-  authDomain: "yelptest-bcf7a.firebaseapp.com",
-  databaseURL: "https://yelptest-bcf7a.firebaseio.com",
-  storageBucket: "yelptest-bcf7a.appspot.com",
-  messagingSenderId: "595638809354"
+  apiKey: "AIzaSyAv-6bOhqHPkkst-Aw7ULPb-xvTqHqTpeo",
+  authDomain: "bars-backup.firebaseapp.com",
+  databaseURL: "https://bars-backup.firebaseio.com",
+  storageBucket: "bars-backup.appspot.com",
+  messagingSenderId: "149078553518"
 };
 firebase.initializeApp(config);
 
@@ -20,34 +18,21 @@ var databasePush = firebase.database().ref().push();
 // Initialize variable for any database querying
 var dbQuery = firebase.database();
 
-// // // Create a new GeoFire instance at the random Firebase location
+// Create a new GeoFire instance at the random Firebase location
 var geoFire = new GeoFire(databasePush);
 
-// ========Google Maps API FUNCTION===========
-
-
-// Function to locate the user using Google MAPS API
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
+// Initialize the variable for the AUSTIN PARK API push
 
 // Global variables of pos (which is the user location and username in order to retrieve later)
 var pos;
-var username ="";
 // Because our map is at a zoom of 13 which is 2 miles, 2 miles in km is 3.21869 Km / 2 = 1.609345
 // Will use this radius to determine what results are populated into the map and cards (only this <= this radiu)
-var resultRadius = 1.609345;
+var resultRadius = 1; // distance in miles or our user location
 var resultsArray = [];
 
- // Is the array where the user location is stored for manipulation later
-var userLocation= [30.22655007765157, -97.86187313256364];
-var lat1 = userLocation[0];
-var lng1 = userLocation[1];
+// Array for the park info
+var parkInfo = [];
 
-
-
-console.log("HEYYYYYY this is user lat: " + lat1);
 
 // ================ FUNCTIONS =================
 
@@ -68,22 +53,6 @@ function initMap() {
       console.log("Retrieved user's location: [" + pos.lat + ", " + pos.lng + "]");
       // Setting the coordinates of user in local storage
       localStorage.setItem("userLocation", JSON.stringify(pos));
-      // Currently comes out as an object, object, figure out how to get it reading the actual data
-      console.log("This is the local Storage location: "+ JSON.parse(localStorage.getItem("userLocation")));
-      
-      // Might need to figure out how to randomly generate a new username or id
-      var username = "test";
-      geoFire.set(username, [pos.lat, pos.lng]).then(function() {
-        console.log("Current user " + username + "'s location has been added to GeoFire");
-
-      // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
-      // remove their GeoFire entry
-        databasePush.child(username).onDisconnect().remove();
-
-        console.log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
-      }).catch(function(error) {
-        console.log("Error adding user " + username + "'s location to GeoFire");
-      });
       
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
@@ -104,19 +73,23 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
 };
 
-// function getDistanceInKm(){
-//   var R = 6371; // Radius of the earth in km
-//   var dLat = deg2rad(lat2-lat1);  // deg2rad below
-//   var dLng = deg2rad(lng2-lng1); 
-//   var a = 
-//     Math.sin(dLat/2) * Math.sin(dLat/2) +
-//     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-//     Math.sin(dLng/2) * Math.sin(dLng/2)
-//     ; 
-//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-//   var distance = R * c; // Distance in km
-//   return distance;
-// };
+function getDistanceInKm(lat2, lng2){
+  var  userLocation = JSON.parse(localStorage.getItem("userLocation", pos));
+  console.log("This is the ARRAY user location: " +  userLocation);
+  var lat1= userLocation.lat;
+  var lng1 = userLocation.lng;
+  var R = 3959; // Radius of the earth in miles
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLng = deg2rad(lng2-lng1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLng/2) * Math.sin(dLng/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var distance = R * c; // Distance in km
+  return distance;
+};
 
 
 
@@ -131,35 +104,15 @@ $('.categories a').on('click', getData);
 function getData (){
   var category = $(this).data('category');
   console.log("User Click: " + category);
-};
 
 
-// Call the get user lcoation function
-// getUserLoc();
-// // use Geofire to pull key (location)
-// // This has to do with promises (might need another library to reference like RSVP not sure)
-// function getUserLoc (){
-//   geoFire.get("username").then(function(location) {
-//   if (location === null) {
-//     console.log("Provided key is not in GeoFire");
-//   }
-//   else {
-  // // Then push it to the userLocation arrary
-//     userLocation.push(location);
-//     console.log("Provided key has a location of " + location);
-//   }
-// }, function(error) {
-//   console.log("Error: " + error);
-// });
 
-
-// } 
 
 // Loop through users in order with the forEach() method. The callback provided
 // to will be called synchronously with a DataSnapshot for each child:
 // Pull out the information of the bars = then use the haversine forlumla to compare user Location and bar location. 
 // Also need to set a radius to calculate distance (look at Geofire to see if call calculate it)
-var query = dbQuery.ref("bars");
+var query = dbQuery.ref($(this).data('category'));
 // Tie this query to the user click data-category "bars" for example
 query.once("value")
   .then(function(snapshot) {
@@ -167,56 +120,102 @@ query.once("value")
       // key will be the item the first time and the second item the second time
       var key = childSnapshot.key;
       // child lat and lng will be the actual contents of the child loc
-      var childLat = childSnapshot.val().loc.lat;
-      var childLng = childSnapshot.val().loc.lng;
-      console.log("This is the bar lat: " + JSON.stringify(childLat) + " and the bar lng: " + JSON.stringify(childLng));
-      // initializing the variables of locations lat and lng
-      var lat2= childLat;
-      var lng2  = childLng;
+      var childData = childSnapshot.val();
+    
+      var lat2= childData.loc.lat;
+      var lng2  = childData.loc.lng;
       // Call the haversine formula that is defined above
-      function getDistanceInKm(){
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLng = deg2rad(lng2-lng1); 
-        var a = 
-          Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-          Math.sin(dLng/2) * Math.sin(dLng/2)
-          ; 
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-        var distance = R * c; // Distance in km
-        return distance;
-        console.log("Line: 178, Distance between user location and bar: " + distance);  
-      };         
-
+      
+      
+      var distance =  getDistanceInKm(lat2, lng2);         
+      console.log("This is the distance from user location to bar: " + distance);
       // Add the if logic to take the bar child if the radius is <= to result Radius
-      // if(distance <= resultRadius) {
-      //   // needs to pull out that entire object out and push it to an array
-      //   var resultsData = childSnapshot.val();
+      if(distance <= resultRadius) {
+        console.log("This is the bar closest to you: " + childSnapshot.val().id);
+        console.log("This is the bar closest to you: " + JSON.stringify(childSnapshot.val()));
+
+        // Push all of the relevant data to the page
       //   resultsArray.push(resultsData);
-      // }
+      } else {
+        console.log ("This bar is not close to you");
+      }
 
   });
 });
+};
 
 
+// ======== AUSTIN PARKS API===============
 
-// // Working code that retreives each bars lat and lng
-// var query = dbQuery.ref("bars");
-// query.once("value")
-//   .then(function(snapshot) {
-//     snapshot.forEach(function(childSnapshot) {
-//       // key will be the item the first time and the second item the second time
-//       var key = childSnapshot.key;
-//       // child lat and lng will be the actual contents of the child loc
-//       var childLat = childSnapshot.val().loc.lat;
-//       var childLng = childSnapshot.val().loc.lng;
-//       console.log("This is the bar lat: " + JSON.stringify(childLat) + " and the bar lng: " + JSON.stringify(childLng));
-//       // Use the havesine formula to calculate the distance
 
-//   });
+// Austin Parks API
+// $.ajax({
+//     url: "https://data.austintexas.gov/resource/up6y-6ww4.json",
+//     type: "GET",
+//     data: {
+//         "$limit": 5000,
+//         "$$app_token": "BpQTL15Fi3PePMZUluMK7cKFy"
+//     }
+// }).done(function (response) {
+
+
+//     var info = response;
+
+
+//     console.log(response);
+
+//     // Cleaning up data from the API
+//     for (i = 0; i < response.length; i++) {
+
+//         response[i].descriptio = response[i].descriptio.replace(
+//                 /<DIV>|<BR>|<\/DIV>|<div dir="ltr">|<a href.*|<IMG src.*/ig, '');
+
+//         response[i].descriptio = response[i].descriptio.replace(
+//                 /LnAustin/ig, "Ln Austin");
+
+//         response[i].descriptio = response[i].descriptio.replace(
+//                 /TerraceAustin/ig, "Terrace Austin");
+
+//         response[i].descriptio = response[i].descriptio.replace(
+//                 /Blvd.Austin/ig, "Blvd Austin");
+
+//     }
+//     // ============= Put all of this in a FOR loop =========
+
+//     // For loop to push all of the items from the Austin parks API into our database
+//     for (var i=0; i < response.length; i++){
+//       var address = response[i].descriptio; 
+//       var name = response[i].name;
+//       var loc = {
+//             lat: response[i].the_geom.coordinates[1],
+//             lng: response[i].the_geom.coordinates[0]
+//       };
+//       dbQuery.ref('parks').push({
+//         address: address,
+//         name: name, 
+//         loc: loc,
+//       });
+//     };
 // });
+
+
+// ========= END AUSTIN PARKS API =================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ======== 1st GOOGLE API AJAX FUNCTION===========
+//====== Draft - by Nigel ==========
 // googlePlacesPull();
 // var petStores = [];
 
