@@ -202,20 +202,20 @@
         <h2 class="header text_b">Eat. Shop. Play.</h2>
         <!-- Need to dynamically update these pics, should have a placeholder here, like featured bars or parks,etc.  -->
         <div class="row" id="cardsAppearHere">
-            <div class="col s12 m4 l4">
+             <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/yardbar.jpg">
-                        <span class="card-title">Yard Bar <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Yard Bar</span>
                     </div>
                     <div class="card-content">
-                        <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -231,16 +231,16 @@
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/lustrepearl.jpg">
-                        <span class="card-title">Lustre Pearl <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Lustre Pearl</span>
                     </div>
                     <div class="card-content">
-                    <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                    <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -256,17 +256,17 @@
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/bangers.png">
-                        <span class="card-title">Bangers <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Bangers </span>
 
                     </div>
                     <div class="card-content">
-                    <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                    <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Hours: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info <i class="mdi-navigation-more-vert right"></i></span>
@@ -581,16 +581,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
     <!-- Templating Using Underscore Library -->
-      <script type="text/template" id="giphyTmpl">
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="<%= result.images.fixed_height_small_still.url %>" data-still="<%= result.images.fixed_height_small_still.url %>" data-animate="<%= result.images.fixed_height_small.url %>" data-state="still">
-                    </div>
-                    <div class="card-content"><p class="rate"> Rating: <%= result.rating %></p>
-                    </div>
+     <script type="text/template" id="searchCards">
+        <div class="col s12 m4 l4">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator cardImage" src="<%= results[i].snippet_image_url %>" alt="search-image">
+                </div>
+                <span class="card-title"><%= results[i].name %></span>
+                <div class="card-content">
+                    <p id="card-info"><%= distanceRounded %> mi</p>
+                    <p id="card-info"><%= results[i].location.display_address["0"] %><br><%= results[i].location.display_address["2"] %></p>
+                    <p id="card-info"><%= results[i].display_phone</p>
+                </div>
+                <div class="card-action">
+                    <a href="<%= results[i].url %>">Yelp Info</a>
+                    <!-- <a href="#">More info</a> Comment: We could add a link to do a modal with more info -->
                 </div>
             </div>
+        </div>
     </script>
 
 
