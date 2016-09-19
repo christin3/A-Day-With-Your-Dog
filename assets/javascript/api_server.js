@@ -30,14 +30,14 @@ var yelp = new Yelp({
   token_secret: config.tokenSecret
 });
 
-// var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '78712', '78717', '78719', '78721', '78722', '78723', '78724', '78725', '78726', '78727', '78728', '78729', '78730', '78731', '78732', '78733', '78734', '78735', '78736', '78737', '78738', '78739', '78741', '78742', '78744', '78745', '78746', '78747', '78748', '78749', '78750', '78751', '78752', '78753', '78754', '78756', '78757', '78758', '78759', '78799'];
+var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '78712', '78717', '78719', '78721', '78722', '78723', '78724', '78725', '78726', '78727', '78728', '78729', '78730', '78731', '78732', '78733', '78734', '78735', '78736', '78737', '78738', '78739', '78741', '78742', '78744', '78745', '78746', '78747', '78748', '78749', '78750', '78751', '78752', '78753', '78754', '78756', '78757', '78758', '78759', '78799'];
 
-// for (var k = 0; k < AustinZipcodes.length; k++){
-// 	var zipcode = AustinZipcodes[k];
+for (var k = 0; k < AustinZipcodes.length; k++){
+	var zipcode = AustinZipcodes[k];
 
-	// for (var j = 0; j < 50; j++){
+	for (var j = 0; j < 50; j++){
 		//See http://www.yelp.com/developers/documentation/v2/search_api
-		yelp.search({ term: 'bar dogs allowed', location: 78757, limit: 4})
+		yelp.search({ term: 'bar dogs allowed', location: zipcode, limit: j})
 		.then(function (data) {
 			console.log(data);
 			var results = data.businesses;
@@ -73,5 +73,5 @@ var yelp = new Yelp({
 		.catch(function (err) {
 		  console.error(err);
 		});
- // 	}
- // }
+ 	}
+}
