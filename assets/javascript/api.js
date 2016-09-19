@@ -23,10 +23,10 @@ var pos;
 // Because our map is at a zoom of 13 which is 2 miles, 2 miles in km is 3.21869 Km / 2 = 1.609345
 // Will use this radius to determine what results are populated into the map and cards (only this <= this radiu)
 var resultRadius = 5; // distance in miles or our user location
-var resultsArray = [];
-
+// var resultsArray = [];
+var map;
 var locationMarkers = [];
-// var map; 
+
 
 // ================ FUNCTIONS =================
 
@@ -68,7 +68,7 @@ function initMap() {
             "color": "#2196F3"
         }]
     }];
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
         zoom: 13,
         styles: styles,
@@ -115,7 +115,7 @@ function initMap() {
             });
 
             infoWindow.setPosition(pos);
-            
+
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -192,26 +192,35 @@ function deg2rad(degrees) {
 };
 
 function showMarkers() {
-        // var bounds = new google.maps.LatLngBounds();
-        // Extend the boundaries of the map for each marker and display the marker
-        for (var i = 0; i < locationMarkers.length; i++) {
-          locationMarkers[i].setMap(map);
-          // bounds.extend(markers[i].position);
-        }
-        // map.fitBounds(bounds);
-      }
+    var bounds = new google.maps.LatLngBounds();
+    // Extend the boundaries of the map for each marker and display the marker
+    for (var i = 0; i < locationMarkers.length; i++) {
+        locationMarkers[i].setMap(map);
+        bounds.extend(locationMarkers[i].position);
+    }
+    map.fitBounds(bounds);
+};
+
+// This function will loop through the listings and hide them all.
+function hideMarkers() {
+    for (var i = 0; i < locationMarkers.length; i++) {
+        locationMarkers[i].setMap(null);
+    }
+    locationMarkers.empty();
+};
 
 // Maybe put all of this in an document on ready function
 // This will handle the user click in the dropdown
-$('.categories a').on('click', getData);
+// $('.categories a').on('click', getData);
 
+$('.categories a').on('click', function () {
+    hideMarkers();
+    getData();
+});
 // function to get the user click
 function getData() {
     var category = $(this).data('category');
     console.log("User Click: " + category);
-
-
-
 
     // Loop through users in order with the forEach() method. The callback provided
     // to will be called synchronously with a DataSnapshot for each child:
@@ -247,18 +256,18 @@ function getData() {
                     var markerTitle = childSnapshot.val().name;
                     var markerId = childSnapshot.val().id;
                     var marker = new google.maps.Marker({
-                      // setMap: map,
-                      position: markerPosition,
-                      title: markerTitle,
-                      animation: google.maps.Animation.DROP,
-                      // icon: defaultIcon,
-                      id: markerId
+                        // setMap: map,
+                        position: markerPosition,
+                        title: markerTitle,
+                        animation: google.maps.Animation.DROP,
+                        // icon: defaultIcon,
+                        id: markerId
                     });
                     // Push the marker to our array of markers.
                     locationMarkers.push(marker);
                     console.log("Marker: " + JSON.stringify(locationMarkers));
                     // marker.setMap(map);
-                    showMarkers();
+
 
                     // ======= END MARKER CREATION ===========
 
@@ -270,7 +279,12 @@ function getData() {
                 }
 
             });
+
+        })
+        .then(function() {
+            showMarkers();
         });
+
 };
 
 
