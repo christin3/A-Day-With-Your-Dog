@@ -203,6 +203,8 @@ function showMarkers() {
 
 // This function will loop through the listings and hide them all.
 function hideMarkers() {
+    // Put this within an if statement to run only when there is 
+    // information within the array
     for (var i = 0; i < locationMarkers.length; i++) {
         locationMarkers[i].setMap(null);
     }
@@ -211,12 +213,14 @@ function hideMarkers() {
 
 // Maybe put all of this in an document on ready function
 // This will handle the user click in the dropdown
-// $('.categories a').on('click', getData);
+$('.categories a').on('click', getData);
 
-$('.categories a').on('click', function () {
-    hideMarkers();
-    getData();
-});
+// $('.categories a').on('click', function () {
+//     getData();
+// });
+
+hideMarkers();
+
 // function to get the user click
 function getData() {
     var category = $(this).data('category');
