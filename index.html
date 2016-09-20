@@ -15,6 +15,10 @@
 
     <!-- FONT AWESOME LINK -->
     <link href="assets/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>   
+     <!-- ======GeoFire ===== -->
+    <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script>
 
     <!-- CSS  -->
     <link href="assets/css/plugin-min.css" type="text/css" rel="stylesheet">
@@ -79,8 +83,8 @@
                 <b>Eat</b>
                 <b>Drink</b>
                 <b>Shop</b>
-                <b>Play</b>
-                <b>Socialize</b>
+                <!-- <b>Play</b>
+                <b>Socialize</b> -->
                 
 
             </span>
@@ -120,12 +124,12 @@
                 <a class='dropdown-button btn btn-large blue lighten-3 center-align' href='#' data-activates='dropdown1'>Choose Your Adventure <span> <i class="fa fa-angle-double-down"></i><span></a>
 
                 <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!" class="blue-text text-lighten-3">EAT.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">DRINK.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">PLAY.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
-                    <li><a href="#!" class="blue-text text-lighten-3">SOCIALIZE.</a></li>
+                <ul id='dropdown1' class='dropdown-content categories'>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="eat">EAT.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="bars">DRINK.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="parks">PLAY.</a></li>
+                    <!-- <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3">SOCIALIZE.</a></li> -->
                 </ul>
             </div>
 
@@ -198,20 +202,20 @@
         <h2 class="header text_b">Eat. Shop. Play.</h2>
         <!-- Need to dynamically update these pics, should have a placeholder here, like featured bars or parks,etc.  -->
         <div class="row" id="cardsAppearHere">
-            <div class="col s12 m4 l4">
+             <!-- <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/yardbar.jpg">
-                        <span class="card-title">Yard Bar <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Yard Bar</span>
                     </div>
                     <div class="card-content">
-                        <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -227,16 +231,16 @@
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/lustrepearl.jpg">
-                        <span class="card-title">Lustre Pearl <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Lustre Pearl</span>
                     </div>
                     <div class="card-content">
-                    <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                    <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
@@ -252,17 +256,17 @@
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/bangers.png">
-                        <span class="card-title">Bangers <!-- Will need to dynamically update this info --></span>
+                        <span class="card-title">Bangers </span>
 
                     </div>
                     <div class="card-content">
-                    <span class="itemInfo">Rating<!-- Will need to dynamically update this info --></span>
+                    <span class="itemInfo">Rating</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Distance<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Distance</span>
                         <br>
                         <br>
-                        <span class="itemInfo">Happy Hour: 9-5<!-- Will need to dynamically update this info --></span>
+                        <span class="itemInfo">Hours: 9-5</span>
                         <br>
                         <br>
                         <span class="card-title activator grey-text text-darken-4">More Info <i class="mdi-navigation-more-vert right"></i></span>
@@ -273,7 +277,7 @@
                         <p>Here is some more information about this project that is only revealed once clicked on.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -550,37 +554,52 @@
 
 <!-- ================= SCRIPTS================= -->
 
+
+
+  <!--   <script src="assets/javascript/firebase.js"></script> -->
+    <script src="assets/javascript/clickhandler.js"></script>
+
     <!-- GOOGLE API MAPS SCRIPT LINK -->
       <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM9Sy-q5y4LdWziDiHZ03uspNuxXd7lUo&callback=initMap">
     </script>
 
     <!-- ========FIREBASE CDN============ -->
-    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script> -->
+
+    <!-- ======GeoFire ===== -->
+    <!-- <script src="https://cdn.firebase.com/libs/geofire/4.1.1/geofire.min.js"></script> -->
 
     <!-- Template JS files -->
     <script src="assets/javascript/plugin-min.js"></script>
     <script src="assets/javascript/custom-min.js"></script>
 
-    <!-- Custon JS File -->
-    <script src="assets/javascript/api.js"></script>
-    <script src="assets/javascript/firebase.js"></script>
-    <script src="assets/javascript/clickhandler.js"></script>
+
 
      <!-- Underscore JS library CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- Custom JS File -->
+    <script src="assets/javascript/api.js"></script>
 
     <!-- Templating Using Underscore Library -->
-      <script type="text/template" id="giphyTmpl">
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="<%= result.images.fixed_height_small_still.url %>" data-still="<%= result.images.fixed_height_small_still.url %>" data-animate="<%= result.images.fixed_height_small.url %>" data-state="still">
-                    </div>
-                    <div class="card-content"><p class="rate"> Rating: <%= result.rating %></p>
-                    </div>
+     <script type="text/template" id="cardsResults">
+        <div class="col s12 m4 l4">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">
+                </div>
+                <span class="card-title"><%= card.cardName %> </span>
+                <div class="card-content">
+                    <p id="card-info"><%= card.cardDistance %> mi.</p>
+                    <p id="card-info"><%= card.cardAddress %> </p>
+                    <p id="card-info"><%= card.cardPhone %> </p>
+                </div>
+                <div class="card-action">
+                    <a href="<%=card.cardYelpURL%>">Yelp Info</a>
+                    <!-- <a href="#">More info</a> Comment: We could add a link to do a modal with more info -->
                 </div>
             </div>
+        </div>
     </script>
 
 
