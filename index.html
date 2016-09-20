@@ -200,7 +200,7 @@
         <h2 class="header text_b">Eat. Drink. Play.</h2>
         <!-- Need to dynamically update these pics, should have a placeholder here, like featured bars or parks,etc.  -->
         <div class="row" id="cardsAppearHere">
-             <div class="col s12 m4 l4">
+             <!-- <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator cardImage" src="assets/img/yardbar.jpg">
@@ -275,7 +275,7 @@
                         <p>Here is some more information about this project that is only revealed once clicked on.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -553,8 +553,7 @@
 <!-- ================= SCRIPTS================= -->
 
 
-    <!-- Custom JS File -->
-    <script src="assets/javascript/api.js"></script>
+
   <!--   <script src="assets/javascript/firebase.js"></script> -->
     <script src="assets/javascript/clickhandler.js"></script>
 
@@ -577,22 +576,24 @@
 
      <!-- Underscore JS library CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- Custom JS File -->
+    <script src="assets/javascript/api.js"></script>
 
     <!-- Templating Using Underscore Library -->
-     <script type="text/template" id="searchCards">
+     <script type="text/template" id="cardsResults">
         <div class="col s12 m4 l4">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator cardImage" src="<%= results[i].snippet_image_url %>" alt="search-image">
+                    <img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">
                 </div>
-                <span class="card-title"><%= results[i].name %></span>
+                <span class="card-title"><%= card.cardName %> </span>
                 <div class="card-content">
-                    <p id="card-info"><%= distanceRounded %> mi</p>
-                    <p id="card-info"><%= results[i].location.display_address["0"] %><br><%= results[i].location.display_address["2"] %></p>
-                    <p id="card-info"><%= results[i].display_phone</p>
+                    <p id="card-info"><%= card.cardDistance %> mi.</p>
+                    <p id="card-info"><%= card.cardAddress %> </p>
+                    <p id="card-info"><%= card.cardPhone %> </p>
                 </div>
                 <div class="card-action">
-                    <a href="<%= results[i].url %>">Yelp Info</a>
+                    <a href="<%=card.cardYelpURL%>">Yelp Info</a>
                     <!-- <a href="#">More info</a> Comment: We could add a link to do a modal with more info -->
                 </div>
             </div>
