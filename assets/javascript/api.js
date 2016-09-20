@@ -225,10 +225,11 @@ $('.categories a').on('click', getData);
 var card;
 function getData() {
     hideMarkers();
+    $('#cardsAppearHere').empty();
     // moves the user window to the map section when the user makes a selection
     window.location.hash = "yourMap";
     var category = $(this).data('category');
-    // console.log("User Click: " + category);
+    console.log("User Click: " + category);
 
     // Loop through users in order with the forEach() method. The callback provided
     // to will be called synchronously with a DataSnapshot for each child:
@@ -274,6 +275,7 @@ function getData() {
                     // console.log("Marker: " + JSON.stringify(locationMarkers));
                     // marker.setMap(map);
                     marker.addListener('click', function() {
+                        
                         window.location.hash = "cards";
                   });
 

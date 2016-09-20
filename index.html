@@ -116,7 +116,7 @@
             </form> -->
         <!-- ========OPTION 2 ========== -->
         <!-- Possible Dropdown Menu -->
-            <div class="col s12 m6">
+            <div class="col s12 m12">
 
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-button btn btn-large blue lighten-3 center-align' href='#' data-activates='dropdown1'>Choose Your Adventure <span> <i class="fa fa-angle-double-down"></i><span></a>
@@ -133,7 +133,7 @@
 
             <!-- Possible SEARCH BAR -->
             <!-- Right now the text populates upwards and not in the box -FIX -->
-            <div class="col s12 m6">
+            <!-- <div class="col s12 m6">
              <nav>
                 <div class="nav-wrapper blue darken-4">
                   <form>
@@ -145,7 +145,7 @@
                   </form>
                 </div>
               </nav>
-            </div>
+            </div> -->
 
 
 
@@ -585,12 +585,13 @@
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">
+                     <span class="card-title"><%= card.cardName %> </span>
                 </div>
-                <span class="card-title"><%= card.cardName %> </span>
-                <div class="card-content">
-                    <p id="card-info"><%= card.cardDistance %> mi.</p>
-                    <p id="card-info"><%= card.cardAddress %> </p>
-                    <p id="card-info"><%= card.cardPhone %> </p>
+               
+                <div class="card-content text_b">
+                    <p class="card-info">Distance: <%= card.cardDistance %> mi.</p>
+                    <p class="card-info"><%= card.cardAddress %> </p>
+                    <p class="card-info"><%= card.cardPhone %> </p>
                 </div>
                 <div class="card-action">
                     <a href="<%=card.cardYelpURL%>">Yelp Info</a>
@@ -599,7 +600,6 @@
             </div>
         </div>
     </script>
-
 
     </body>
 </html>
