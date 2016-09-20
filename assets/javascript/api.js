@@ -202,14 +202,14 @@ function showMarkers() {
 };
 
 // This function will loop through the listings and hide them all.
-function hideMarkers() {
-    // Put this within an if statement to run only when there is 
-    // information within the array
-    for (var i = 0; i < locationMarkers.length; i++) {
-        locationMarkers[i].setMap(null);
-    }
-    locationMarkers.empty();
-};
+// function hideMarkers() {
+//     // Put this within an if statement to run only when there is 
+//     // information within the array
+//     for (var i = 0; i < locationMarkers.length; i++) {
+//         locationMarkers[i].setMap(null);
+//     }
+//     locationMarkers.empty();
+// };
 
 // Maybe put all of this in an document on ready function
 // This will handle the user click in the dropdown
@@ -219,9 +219,11 @@ $('.categories a').on('click', getData);
 //     getData();
 // });
 
-hideMarkers();
+// hideMarkers();
 
 // function to get the user click
+
+var card;
 function getData() {
     var category = $(this).data('category');
     console.log("User Click: " + category);
@@ -253,6 +255,7 @@ function getData() {
                     console.log("This is the bar closest to you: " + JSON.stringify(childSnapshot.val()));
                     console.log("------------------------------");
 
+                    
                     // Push all of the relevant data to the page
                     //   resultsArray.push(resultsData);
                     // ======== MAP MARKER CREATION AND PUSH ========
@@ -275,7 +278,32 @@ function getData() {
 
                     // ======= END MARKER CREATION ===========
 
-                    // ======= TEMPLATE CREATION ==============
+                    // ======= TEMPLATE CREATION ============== 
+
+                    var cardImgURL = childSnapshot.val().image;
+                    var cardName = childSnapshot.val().name;
+                    var cardDistance = distance.toFixed(2);
+                    var cardAddress = childSnapshot.val().address;
+                    var cardPhone = childSnapshot.val().phone;
+                    var cardYelpURL = childSnapshot.val().url;
+
+                    card = {
+                        cardImgURL: cardImgURL,
+                        cardName: cardName,
+                        cardDistance: cardDistance,
+                        cardAddress: cardAddress,
+                        cardPhone: cardPhone,
+                        cardYelpURL: cardYelpURL
+                    }
+
+                    console.log("This should print all info in card: " + card);
+
+                    
+                    // Targeting the underscore template housed in the html
+                    var cardsTemplate = _.template($('#cardsResults').html());
+                    //$('#cardsAppearHere').append(cardsTemplate({card: card}));
+                    $('#cardsAppearHere').append(cardsTemplate(card));
+                    console.log(cardsTemplate);
 
 
                 } else {
@@ -408,22 +436,3 @@ function getData() {
 // Empties the cards view  before adding a new buttons
 // $('#cardsAppearHere').empty();
 
-// NOT USING THE UNDERSCORE LIBRARY
-// Loops through array and prints out all items to the screen
-//          for (var i = 0; i < results.length; i++) {
-
-//           // creates the materialize 'card'
-// var starDiv = $('<div class="col s12 m4 l3"><div class="card"><div class="card-image"><img src="'+ results[i].images.fixed_height_small_still.url + '" data-still="'+ results[i].images.fixed_height_small_still.url+ '" data-animate="'+ results[i].images.fixed_height_small.url +'" data-state="still"></div><div class="card-content"><p class="rate"> Rating: '  + results[i].rating + '</p></div></div></div>');
-//              // Writes the card to the page
-//              $('#gifsAppearHere').prepend(starDiv);
-
-// }
-
-// using Underscore.js and template the image changes. 
-// var $gifs = $('#gifsAppearHere');
-// // Targeting the underscore template housed in the html
-// var $giphyTemplate = _.template($('#giphyTmpl').html());
-// // for each loop similar to that used in Star wars game
-// results.forEach(function(result) {
-//       $gifs.prepend($giphyTemplate({result: result }));
-//   });
