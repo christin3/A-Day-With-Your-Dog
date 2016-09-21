@@ -123,7 +123,7 @@
 
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content categories'>
-                    <li><a href="#!" class="blue-text text-lighten-3" data-category="eat">EAT.</a></li>
+                    <li><a href="#!" class="blue-text text-lighten-3" data-category="restaurants">EAT.</a></li>
                     <li><a href="#!" class="blue-text text-lighten-3" data-category="bars">DRINK.</a></li>
                     <li><a href="#!" class="blue-text text-lighten-3" data-category="parks">PLAY.</a></li>
                     <!-- <li><a href="#!" class="blue-text text-lighten-3">SHOP.</a></li>
@@ -199,84 +199,7 @@
     <div class="container">
         <h2 class="header text_b">Eat. Drink. Play.</h2>
         <!-- Need to dynamically update these pics, should have a placeholder here, like featured bars or parks,etc.  -->
-        <div class="row" id="cardsAppearHere">
-             <!-- <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator cardImage" src="assets/img/yardbar.jpg">
-                        <span class="card-title">Yard Bar</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="itemInfo">Rating</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Distance</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Hours: 9-5</span>
-                        <br>
-                        <br>
-                        <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Website</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Yard Bar <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator cardImage" src="assets/img/lustrepearl.jpg">
-                        <span class="card-title">Lustre Pearl</span>
-                    </div>
-                    <div class="card-content">
-                    <span class="itemInfo">Rating</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Distance</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Hours: 9-5</span>
-                        <br>
-                        <br>
-                        <span class="card-title activator grey-text text-darken-4">More Info<i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Website</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Lustre Pearl <i class="mdi-navigation-close right"></i></span>
-                        <p> Inlcude more information about the bar here</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator cardImage" src="assets/img/bangers.png">
-                        <span class="card-title">Bangers </span>
-
-                    </div>
-                    <div class="card-content">
-                    <span class="itemInfo">Rating</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Distance</span>
-                        <br>
-                        <br>
-                        <span class="itemInfo">Hours: 9-5</span>
-                        <br>
-                        <br>
-                        <span class="card-title activator grey-text text-darken-4">More Info <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Website</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Bangers <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+        <div class="row" id="cardsAppearHere"></div>
     </div>
 </div>
 
@@ -582,7 +505,7 @@
     <!-- Templating Using Underscore Library -->
      <script type="text/template" id="cardsResults">
         <div class="col s12 m4 l4">
-            <div class="card">
+            <div class="card" id="<%= card.cardId %>">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">
                      <span class="card-title"><%= card.cardName %> </span>
