@@ -1,49 +1,49 @@
 
 // ======== 1st GOOGLE API AJAX FUNCTION===========
 //====== Draft - by Nigel ==========
-// googlePlacesPull();
-// var petStores = [];
+googlePlacesPull();
+var petStores = [];
 
-// function googlePlacesPull() {
-//       // Add the GOOGLE QUERY SEARCH url 
-//         // Starting with Pet Store search
-//         var searchParam = "pet_store"; 
-//          // var searchParam = "veterinary_care";
-//          // This current search will only yeild 19 results. Use the next_page_token to get more results
-//         var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&type=" + searchParam + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
+function googlePlacesPull() {
+      // Add the GOOGLE QUERY SEARCH url 
+        // Starting with Pet Store search
+        var searchParam = "pet_store"; 
+         // var searchParam = "veterinary_care";
+         // This current search will only yeild 19 results. Use the next_page_token to get more results
+        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&type=" + searchParam + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
 
 
-//         // Ajax call that pulls the data from the api
-//         $.ajax({
-//                 headers: {
-//                   'Access-Control-Allow-Origin': '*'
-//                 },
-//                 url: queryURL,
-//                 method: 'GET'
-//             })
-//             .done(function(response) {
-//               // Logs entire response
-//               // console.log("This is the GOOGLE place response: " + JSON.stringify(response));
+        // Ajax call that pulls the data from the api
+        $.ajax({
+                headers: {
+                  'Access-Control-Allow-Origin': '*'
+                },
+                url: queryURL,
+                method: 'GET'
+            })
+            .done(function(response) {
+              // Logs entire response
+              // console.log("This is the GOOGLE place response: " + JSON.stringify(response));
 
-//               //Sets the variable results = the entire data set coming from the API
-//               var data = response.results; 
+              //Sets the variable results = the entire data set coming from the API
+              var data = response.results; 
 
-//               console.log(data);
+              console.log(data);
 
-//               // Create a for loop to loop through the results then pull out the various tags that we need
-//               for (var i=0; i < data.length; i++){
-//                 var name = data[i].name;
-//                 var placeId = data[i].place_id;
-//                 var location = data[i].geometry.location;
+              // Create a for loop to loop through the results then pull out the various tags that we need
+              for (var i=0; i < data.length; i++){
+                var name = data[i].name;
+                var placeId = data[i].place_id;
+                var location = data[i].geometry.location;
 
-//                 // Store this in an objec and pushes it to the empty array called petStores
-//                 petStores.push({name: name, placeId: placeId, location: location, id: i });
-//                 // push these objects to an array which will then be pushed to the firebase database
+                // Store this in an objec and pushes it to the empty array called petStores
+                petStores.push({name: name, placeId: placeId, location: location, id: i });
+                // push these objects to an array which will then be pushed to the firebase database
 
-//               }
-//               googleDetails(petStores);
-//       });
-//     }
+              }
+              googleDetails(petStores);
+      });
+    }
 
 // // ===== 2ND function that pulls the data from the first petStores search and populates more detailed data =====
 

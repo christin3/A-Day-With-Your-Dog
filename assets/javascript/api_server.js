@@ -37,7 +37,7 @@ for (var k = 0; k < AustinZipcodes.length; k++){
 
 	for (var j = 0; j < 50; j++){
 		//See http://www.yelp.com/developers/documentation/v2/search_api
-		yelp.search({ term: 'bar dogs allowed', location: zipcode, limit: j})
+		yelp.search({ term: 'bars dogs allowed', location: zipcode, limit: j})
 		.then(function (data) {
 			console.log(data);
 			var results = data.businesses;
@@ -49,7 +49,7 @@ for (var k = 0; k < AustinZipcodes.length; k++){
 		        var image = results[i].snippet_image_url;
 		  		var lat = results[i].location.coordinate.latitude;
 		  		var lng = results[i].location.coordinate.longitude;
-		  		var address = results[i].location.display_address["0"] + ", " + results[i].location.display_address["2"];
+		  		var address = results[i].location.display_address["0"] + ", ATX";
 		  		var phone = results[i].display_phone;
 		  		var yelpURL = results[i].url;
 		  		var id = results[i].id;

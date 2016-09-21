@@ -7,12 +7,13 @@
 
 	width: 100%;
 	height: 64px;
+  font-size: 1.25em;
 }
 
 #map {
 
 	width: 100%;
-    height: 400px;
+  height: 400px;
         
 }
 
@@ -24,6 +25,12 @@ img.cardImage {
 
 .itemInfo {
 	margin-bottom: 5px;
+}
+
+nav .brand-logo {
+  letter-spacing: 0.0525em;
+  font-weight: 300;
+
 }
 
 

@@ -148,7 +148,7 @@ function populateInfoWindow(marker, infowindow) {
             infowindow.marker = null;
         });
     }
-};
+}
 
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
@@ -162,21 +162,7 @@ function makeMarkerIcon(markerColor) {
         new google.maps.Point(10, 34),
         new google.maps.Size(21, 34));
     return markerImage;
-};
-
-// This creates the dog icon for each spot
-function makeDogIcon(imageId) {
-    // for (var i = 0; i < locationMarkers.length; i++) {
-        var markerDogImage = new google.maps.MarkerImage(
-            "assets/img/" + imageId + ".png",       
-            new google.maps.Size(30, 38),
-            new google.maps.Point(0, 0),
-            new google.maps.Point(15, 38),
-            new google.maps.Size(30, 38));
-        return markerDogImage;
-        locationMarkers[i].setIcon(dogIcon.icon);      
-    // }
-};
+}
 
 
 
@@ -211,7 +197,6 @@ function showMarkers() {
     for (var i = 0; i < locationMarkers.length; i++) {
         locationMarkers[i].setMap(map);
         // bounds.extend(locationMarkers[i].position);
-        makeDogIcon(category);
     }
     // We might have an issue with this because if there is only one closeby it zooms really far in
     // map.fitBounds(bounds);
@@ -232,19 +217,18 @@ function hideMarkers() {
 $('.categories a').on('click', getData);
 
 
-// initializing variables
-var card;
-var marker;
-var category;
 
-// function to get the user click and pull the data
+
+
+// function to get the user click
+
+var card;
 function getData() {
     hideMarkers();
-    $('#cardsAppearHere').empty();
     // moves the user window to the map section when the user makes a selection
     window.location.hash = "yourMap";
     var category = $(this).data('category');
-    console.log("User Click: " + category);
+    // console.log("User Click: " + category);
 
     // Loop through users in order with the forEach() method. The callback provided
     // to will be called synchronously with a DataSnapshot for each child:
@@ -262,6 +246,9 @@ function getData() {
 
                 var lat2 = childData.loc.lat;
                 var lng2 = childData.loc.lng;
+                // Call the haversine formula that is defined above
+
+
                 var distance = getDistanceInKm(lat2, lng2);
                 // console.log("This is the distance from user location to bar: " + distance);
                 // Add the if logic to take the bar child if the radius is <= to result Radius
@@ -269,12 +256,8 @@ function getData() {
                     // console.log("This is ID of the " + category + " closest to you: " + JSON.stringify(childSnapshot.val().id));
                     // console.log("This is the " + category + " closest to you: " + JSON.stringify(childSnapshot.val()));
                     // console.log("------------------------------");
-
+;
                     // ======== MAP MARKER CREATION AND PUSH ========
-
-                 
-                    var dogIcon =  makeDogIcon(category);
-
                     var markerPosition = childSnapshot.val().loc;
                     var markerTitle = childSnapshot.val().name;
                     var markerId = childSnapshot.val().id;
@@ -284,27 +267,15 @@ function getData() {
                         title: markerTitle,
                         animation: google.maps.Animation.DROP,
                         // icon: defaultIcon,
-                        id: markerId,
-                        icon: dogIcon
+                        id: markerId
                     });
                     // Push the marker to our array of markers.
                     locationMarkers.push(marker);
                     // console.log("Marker: " + JSON.stringify(locationMarkers));
                     // marker.setMap(map);
-
-                    // Function that takes the users to the cards section. Need to allow multiple click on the map
-                    marker.addListener('click', function(){
-                         window.location.hash = "cards";
-                    }); 
-                    // listeners to display and hide the title of the spot on mouseover and mouseout
-                    marker.addListener('mouseover', function() {
-                        populateInfoWindow(this, largeInfowindow);
-                    });
-                    marker.addListener('mouseout', function() {
-                        closeInfoWindow(this, largeInfowindow);
-                    });
-                    
-                    
+                    marker.addListener('click', function() {
+                        window.location.hash = "cards";
+                  });
 
                     // ======= END MARKER CREATION ===========
 
@@ -316,10 +287,8 @@ function getData() {
                     var cardAddress = childSnapshot.val().address;
                     var cardPhone = childSnapshot.val().phone;
                     var cardYelpURL = childSnapshot.val().url;
-                    var cardId = childSnapshot.val().id;
 
                     card = {
-                        cardId: cardId,
                         cardImgURL: cardImgURL,
                         cardName: cardName,
                         cardDistance: cardDistance,
@@ -351,7 +320,6 @@ function getData() {
         });
 
 };
-
 
 
 
