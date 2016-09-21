@@ -289,8 +289,10 @@ function getData() {
                     var cardAddress = childSnapshot.val().address;
                     var cardPhone = childSnapshot.val().phone;
                     var cardYelpURL = childSnapshot.val().url;
+                    var cardId = childSnapshot.val().id;
 
                     card = {
+                        cardId: cardId,
                         cardImgURL: cardImgURL,
                         cardName: cardName,
                         cardDistance: cardDistance,
