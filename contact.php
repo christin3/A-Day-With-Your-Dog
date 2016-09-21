@@ -1,94 +1,36 @@
 <?php
+$errors = '';
+$myemail = 'cnsgalaxygroup@gmail.com';//<-----Put Your email address here.
+$name = $_GET['name'];
+$email = $_GET['email'];
+$message = $_GET['message'];
 
-if(isset($_POST['email'])) {
+    $to = $myemail;
+    $email_subject = "Contact form submission: $name";
+    $email_body = "You have received a new message. ".
+        " Here are the details:\n Name: $name \n Email: $email \n Message: \n $message";
 
-    $email_to = "cnsgalaxygroup@gmail.com";
- 
-    $email_subject = "Website Contact";
+    $headers .= "Content-type:text/html; charset=iso-8859-1\r\n";
+    $headers = "From: $email\n";
+    $headers .= "Reply-To: $email";
 
- 
-    function died($error) {
- 
-        // your error code can go here
- 
-        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
- 
-        echo "These errors appear below.<br /><br />";
- 
-        echo $error."<br /><br />";
- 
-        echo "Please go back and fix these errors.<br /><br />";
- 
-        die();
- 
-    }
- 
-     
- 
-    // validation expected data exists
- 
-    if(!isset($_POST['name']) ||
- 
-        !isset($_POST['email']) ||
- 
-        !isset($_POST['message'])) {
- 
-        died('We are sorry, but there appears to be a problem with the form you submitted.');       
- 
-    }
- 
-     
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
- 
- 
-    $email_message = "Form details below.\n\n";
- 
-     
- 
-    function clean_string($string) {
- 
-      $bad = array("content-type","bcc:","to:","cc:","href");
- 
-      return str_replace($bad,"",$string);
- 
-    }
- 
-     
- 
-    $email_message .= "Name: ".clean_string($name)."\n";
- 
-    $email_message .= "Email: ".clean_string($email)."\n";
- 
-    $email_message .= "Message: ".clean_string($message)."\n";
-
- 
-	// create email headers
-	 
-	$headers = 'From: '.$email."\r\n".
-	 
-	'Reply-To: '.$email."\r\n" .
-	 
-	'X-Mailer: PHP/' . phpversion();
-	 
-	@mail($email_to, $email_subject, $email_message, $headers);  
-
+    mail($to,$email_subject,$email_body,$headers);
+    //redirect to the 'thank you' page
+    header('Location: contact-form-thank-you.html');
 
 ?>
- 
- 
- 
-<!-- include your own success html here -->
- 
- 
- 
-Thank you for contacting the CNS Galaxy Group and for your interest in Day With Your Dog. Will be in touch with you very soon.
- 
- 
- 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Contact form handler</title>
+</head>
+
+<body>
+<!-- This page is displayed only if there is some error -->
 <?php
- 
-}
- 
+echo nl2br($errors);
 ?>
+
+
+</body>
+</html>
