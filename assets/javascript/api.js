@@ -27,6 +27,8 @@ var resultRadius = 5; // distance in miles or our user location
 var map;
 var locationMarkers = [];
 
+var marker;
+
 
 // ================ FUNCTIONS =================
 
@@ -167,14 +169,14 @@ function makeMarkerIcon(markerColor) {
 // This creates the dog icon for each spot
 function makeDogIcon(imageId) {
     // for (var i = 0; i < locationMarkers.length; i++) {
-        var markerDogImage = new google.maps.MarkerImage(
-            "assets/img/" + imageId + ".png",       
-            new google.maps.Size(30, 38),
-            new google.maps.Point(0, 0),
-            new google.maps.Point(15, 38),
-            new google.maps.Size(30, 38));
-        return markerDogImage;
-        locationMarkers[i].setIcon(dogIcon.icon);      
+    var markerDogImage = new google.maps.MarkerImage(
+        "assets/img/" + imageId + ".png",
+        new google.maps.Size(30, 38),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(15, 38),
+        new google.maps.Size(30, 38));
+    return markerDogImage;
+    locationMarkers[i].setIcon(dogIcon.icon);
     // }
 };
 
@@ -227,6 +229,13 @@ function hideMarkers() {
     locationMarkers = [];
 };
 
+// Function that takes the users to the cards section. Need to allow multiple click on the map
+// marker.addListener('click', function(){
+//      window.location.href = "#" + card.cardId;
+//      console.log("This is the CardId: " + card.cardId);
+// }); 
+
+
 // Maybe put all of this in an document on ready function
 // This will handle the user click in the dropdown
 $('.categories a').on('click', getData);
@@ -234,8 +243,8 @@ $('.categories a').on('click', getData);
 
 // initializing variables
 var card;
-var marker;
 var category;
+var markerPosition;
 
 // function to get the user click and pull the data
 function getData() {
@@ -254,11 +263,14 @@ function getData() {
     // Tie this query to the user click data-category "bars" for example
     query.once("value")
         .then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+            // snapshot.forEach(function(childSnapshot) {
+            var venues = snapshot.val();    
+            for(venue in venues){    
                 // key will be the item the first time and the second item the second time
-                var key = childSnapshot.key;
+                var childData = venues[venue];
+                // var key = childSnapshot.key;
                 // child lat and lng will be the actual contents of the child loc
-                var childData = childSnapshot.val();
+                // var childData = childSnapshot.val();
 
                 var lat2 = childData.loc.lat;
                 var lng2 = childData.loc.lng;
@@ -272,14 +284,15 @@ function getData() {
 
                     // ======== MAP MARKER CREATION AND PUSH ========
 
-                 
-                    var dogIcon =  makeDogIcon(category);
 
-                    var markerPosition = childSnapshot.val().loc;
-                    var markerTitle = childSnapshot.val().name;
-                    var markerId = childSnapshot.val().id;
-                    var marker = new google.maps.Marker({
-                        // setMap: map,
+                    var dogIcon = makeDogIcon(category);
+
+                    markerPosition = childData.loc;
+                    var markerTitle = childData.name;
+                    var markerId = childData.id;
+                    marker = {};
+                    marker = new google.maps.Marker({
+                        map: map,
                         position: markerPosition,
                         title: markerTitle,
                         animation: google.maps.Animation.DROP,
@@ -289,34 +302,34 @@ function getData() {
                     });
                     // Push the marker to our array of markers.
                     locationMarkers.push(marker);
-                    // console.log("Marker: " + JSON.stringify(locationMarkers));
+                    // console.log("Maraker: " + JSON.stringify(locationMarkers));
                     // marker.setMap(map);
-
-                    // Function that takes the users to the cards section. Need to allow multiple click on the map
-                    marker.addListener('click', function(){
-                         window.location.hash = "cards";
-                    }); 
+                    marker.addListener('click', function() {
+                        window.location.href = "#" + $(this)[0].id;
+                        console.log("This is the CardId: " + $(this)[0].id);
+                    });
                     // listeners to display and hide the title of the spot on mouseover and mouseout
-                    marker.addListener('mouseover', function() {
-                        populateInfoWindow(this, largeInfowindow);
-                    });
-                    marker.addListener('mouseout', function() {
-                        closeInfoWindow(this, largeInfowindow);
-                    });
-                    
-                    
+                    // ====== TO DO ==============
+                    // marker.addListener('mouseover', function() {
+                    //     populateInfoWindow(this, largeInfowindow);
+                    // });
+                    // marker.addListener('mouseout', function() {
+                    //     closeInfoWindow(this, largeInfowindow);
+                    // });
+
+
 
                     // ======= END MARKER CREATION ===========
 
                     // ======= TEMPLATE CREATION ============== 
 
-                    var cardImgURL = childSnapshot.val().image;
-                    var cardName = childSnapshot.val().name;
+                    var cardImgURL = childData.image;
+                    var cardName = childData.name;
                     var cardDistance = distance.toFixed(2);
-                    var cardAddress = childSnapshot.val().address;
-                    var cardPhone = childSnapshot.val().phone;
-                    var cardYelpURL = childSnapshot.val().url;
-                    var cardId = childSnapshot.val().id;
+                    var cardAddress = childData.address;
+                    var cardPhone = childData.phone;
+                    var cardYelpURL = childData.url;
+                    var cardId = childData.id;
 
                     card = {
                         cardId: cardId,
@@ -328,30 +341,33 @@ function getData() {
                         cardYelpURL: cardYelpURL
                     }
 
-                    console.log("This should print all info in card: " + card);
+                    // console.log("This should print all info in card: " + card);
 
-                    
+
                     // Targeting the underscore template housed in the html
                     var cardsTemplate = _.template($('#cardsResults').html());
                     //$('#cardsAppearHere').append(cardsTemplate({card: card}));
                     $('#cardsAppearHere').append(cardsTemplate(card));
                     console.log(cardsTemplate);
+                    // ======= END TEMPLATE CREATION ============== 
 
+                    //         // // Function that takes the users to the cards section. Need to allow multiple click on the map
+                    // marker.addListener('click', function() {
+                    //     window.location.href = "#" + card.cardId;
+                    //     console.log("This is the CardId: " + card.cardId);
+                    // });
 
                 } else {
                     // console.log("This bar is not close to you");
                 }
 
-            });
+            };
+    
 
         })
         // the function showmarkers is fired after the entire for each loop is running and done pulling out appropriate categories
         .then(function() {
-            showMarkers();
+            // showMarkers();
         });
 
 };
-
-
-
-
