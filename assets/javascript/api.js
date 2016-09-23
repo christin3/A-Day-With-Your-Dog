@@ -233,13 +233,6 @@ function hideMarkers() {
     locationMarkers = [];
 };
 
-// Function that takes the users to the cards section. Need to allow multiple click on the map
-// marker.addListener('click', function(){
-//      window.location.href = "#" + card.cardId;
-//      console.log("This is the CardId: " + card.cardId);
-// }); 
-
-
 // Maybe put all of this in an document on ready function
 // This will handle the user click in the dropdown
 $('.categories a').on('click', getData);
@@ -259,10 +252,7 @@ function getData() {
     var category = $(this).data('category');
     console.log("User Click: " + category);
 
-    // Loop through users in order with the forEach() method. The callback provided
-    // to will be called synchronously with a DataSnapshot for each child:
-    // Pull out the information of the bars = then use the haversine forlumla to compare user Location and bar location. 
-    // Also need to set a radius to calculate distance (look at Geofire to see if call calculate it)
+    // Loop through the information in the database
     var query = dbQuery.ref($(this).data('category'));
     // Tie this query to the user click data-category "bars" for example
     query.once("value")
@@ -280,7 +270,7 @@ function getData() {
                 var lng2 = childData.loc.lng;
                 var distance = getDistanceInKm(lat2, lng2);
                 // console.log("This is the distance from user location to bar: " + distance);
-                // Add the if logic to take the bar child if the radius is <= to result Radius
+                //if logic to take the bar child if the radius is <= to result Radius and display on the page it if is
                 if (distance <= resultRadius) {
                     // console.log("This is ID of the " + category + " closest to you: " + JSON.stringify(childSnapshot.val().id));
                     // console.log("This is the " + category + " closest to you: " + JSON.stringify(childSnapshot.val()));
