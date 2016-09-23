@@ -34,6 +34,12 @@ nav .brand-logo {
 }
 
 
+
+
+input[type=text], input[type=email] { 
+  color: white;
+}
+
 /*COLORS FOR THE LOCATION TYPE BAR*/
   /* label color */
    .input-field label {
