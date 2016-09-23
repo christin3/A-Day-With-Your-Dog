@@ -108,15 +108,14 @@ function initMap() {
                 icon: defaultIcon,
 
             });
-            // Create an onclick event to open the large infowindow at each marker.
-            myMarker.addListener('click', function() {
-                populateInfoWindow(this, infoWindow);
-            });
-            // Two event listeners - one for mouseover, one for mouseout,
-            // to change the colors back and forth.
+
+            // event listener that displays a popup window when mousing over and changes the color
             myMarker.addListener('mouseover', function() {
+                populateInfoWindow(this, infoWindow);
                 this.setIcon(highlightedIcon);
             });
+
+            // event listener that changes the color when mouseout
             myMarker.addListener('mouseout', function() {
                 this.setIcon(defaultIcon);
             });
@@ -313,6 +312,7 @@ function getData() {
                         window.location.href = "#" + $(this)[0].id;
                         console.log("This is the CardId: " + $(this)[0].id);
                     });
+
                     // listeners to display and hide the title of the spot on mouseover and mouseout
                     // ====== TO DO ==============
                     // marker.addListener('mouseover', function() {
@@ -325,6 +325,8 @@ function getData() {
 
 
                     // ======= END MARKER CREATION ===========
+
+
 
                     // ======= TEMPLATE CREATION ============== 
 
@@ -356,12 +358,7 @@ function getData() {
                     console.log(cardsTemplate);
                     // ======= END TEMPLATE CREATION ============== 
 
-                    //         // // Function that takes the users to the cards section. Need to allow multiple click on the map
-                    // marker.addListener('click', function() {
-                    //     window.location.href = "#" + card.cardId;
-                    //     console.log("This is the CardId: " + card.cardId);
-                    // });
-
+  
                 } else {
                     // console.log("This bar is not close to you");
                 }
@@ -371,8 +368,8 @@ function getData() {
 
         })
         // the function showmarkers is fired after the entire for each loop is running and done pulling out appropriate categories
-        .then(function() {
-            // showMarkers();
-        });
+        // .then(function() {
+        //     // showMarkers();
+        // });
 
 };
