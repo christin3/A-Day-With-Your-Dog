@@ -45,13 +45,14 @@ function googlePlacesPull() {
 	//var searchParam = "pet_store"; 
 	// var searchParam = "veterinary_care";
 	// This current search will only yeild 19 results. Use the next_page_token to get more results
-	for (i=0; i < cardId.length; i++){
-        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[i] + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
+	//for (i=0; i < cardId.length; i++){
+        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[200] + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
 
 		// Ajax call that pulls the data from the api
 		$.ajax({
 			headers: {
-				'Access-Control-Allow-Origin': '*'
+				'Access-Control-Allow-Origin': '*',
+				'Content-Type':'application/x-www-form-urlencoded'
 				},
 			url: queryURL,
 			method: 'GET'
@@ -63,84 +64,55 @@ function googlePlacesPull() {
 		//Sets the variable results = the entire data set coming from the API
 		var data = response.results[0];
 
-		placeId.push(data.place_id);
+		console.log(data);
+		console.log(data.photos[0].photo_reference);
 
-		// // Create a for loop to loop through the results then pull out the various tags that we need
-		// for (var i=0; i < data.length; i++){
-		// 	var name = data[i].name;
-		// 	var placeId = data[i].place_id;
-		// 	var location = data[i].geometry.location;
+		var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + data.photos[0].photo_reference + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E";
 
-		// 	// Store this in an objec and pushes it to the empty array called petStores
-		// 	petStores.push({name: name, placeId: placeId, location: location, id: i });
-		// 	// push these objects to an array which will then be pushed to the firebase database
+		console.log(imgURL);
 
-		// }
-		//googleDetails(petStores);
+		dbQuery.ref('bars').child(cardId[200]).child('image').set(imgURL);
 
-		});
-    }
+		})
+	//}
 }
 
 // // ===== 2ND function that pulls the data from the first petStores search and populates more detailed data =====
 
-function googleDetails(imagesReference) {
-      // API DATA
+  // function googleImages() {
+  //     // API DATA
 
-      // Add the GOOGLE QUERY SEARCH url 
-        // Starting with Pet Store search details 
-        // ChIJM89u8izKRIYRQ1idTtNkf9o  test place id for a pet store
-    for (var j=0; j < placeId.length; j++){
-        //var Id = petStores[i].placeId;
-        var queryURL= "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId[j] + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
-
-
-        // Ajax call that pulls the data from the api
-        $.ajax({
-                headers: {
-                  'Access-Control-Allow-Origin': '*'
-                },
-                // async: false,
-                url: queryURL,
-                method: 'GET'
-        })
-        .done(placeDetails);
-
-        photoReference.push(placeDetails.photos.photo_reference);
-
-            // Create this as a function outside of the ajax call
-            
-    }
-  }
-
-  function googleDetails(images) {
-      // API DATA
-
-      // Add the GOOGLE QUERY SEARCH url 
-        // Starting with Pet Store search details 
-        // ChIJM89u8izKRIYRQ1idTtNkf9o  test place id for a pet store
-    for (var k=0; k < placeId.length; k++){
-        //var Id = petStores[i].placeId;
-        var queryURL= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference[0] + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
+  //     // Add the GOOGLE QUERY SEARCH url 
+  //       // Starting with Pet Store search details 
+  //       // ChIJM89u8izKRIYRQ1idTtNkf9o  test place id for an
+  //   //for (var k=0; k < placeId.length; k++){
+  //       var queryURL= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBcwAAAPbx8odJieaXxHqHVcxvooDEkwD6ZSiUDBvXQp7GH9P9xtRdSIGEwLSWctteD_uinrKaBfbRubM9pC0qJWCZWmxjr-bG2TXo5gsXmx5INLM9hLFwC9DEfaccDyBhz4ND5_86ZtH2WXlHe32mVnpkUpAHpJsJ8ZzDsOqoVPm4YPihEhDTsBCypL_ovuJT9tGO3u5RGhTIj4wND1nSZZT0VOrWTOxxAFe8PQ&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
 
 
-        // Ajax call that pulls the data from the api
-        $.ajax({
-                headers: {
-                  'Access-Control-Allow-Origin': '*'
-                },
-                // async: false,
-                url: queryURL,
-                method: 'GET'
-        })
-        .done(image);
+  //       // Ajax call that pulls the data from the api
+  //       $.ajax({
+  //               headers: {
+  //                 'Access-Control-Allow-Origin': '*',
+  //                 'content-type': 'text/plain'
+  //               },
+  //               // async: false,
+  //               url: queryURL,
+  //               method: 'GET'
+  //       })
+  //       .done(function(data, status, request){
+  //       	console.log(request.getResponseHeader('location'));
+  //       console.log('done');
 
-        // add here the push to database!!!!
+  //       database.ref('bars').child(cardId[k]).child('image').set(image);
+  //       // add here the push to database!!!!
 
-            // Create this as a function outside of the ajax call
-            
-    }
-  } 
+  //           // Create this as a function outside of the ajax call
+  //       })
+  //       .error(function(error) {
+  //       	console.log(error);
+  //       });
+  //   //}
+  // }
 
 // function placeDetails(response){
 //  // Logs entire response
