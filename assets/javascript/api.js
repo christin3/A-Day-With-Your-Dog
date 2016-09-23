@@ -1,6 +1,11 @@
 // ====== Questions =========
 
-
+ window.onload=function(){
+     $(function(){
+         if(window.location.protocol==="https:")
+             window.location.protocol="http";
+     });
+ }
 // ========Initialize Firebase=========
 
 var config = {
