@@ -131,6 +131,8 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 };
+// google.maps.event.addDomListener(window, 'load', initMap);
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -363,3 +365,4 @@ function getData() {
         // });
 
 };
+
