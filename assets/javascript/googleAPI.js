@@ -13,12 +13,14 @@ var dbQuery = firebase.database();
 
 var cardId = [];
 
+var imgURL = [];
+
 getData();
 
 function getData() {
 
 	//change ref per depending if it's bars or restaurants
-	var query = dbQuery.ref('bars');
+	var query = dbQuery.ref('restaurants');
 
 	query.once("value")
         .then(function(snapshot) {
@@ -45,8 +47,9 @@ function googlePlacesPull() {
 	//var searchParam = "pet_store"; 
 	// var searchParam = "veterinary_care";
 	// This current search will only yeild 19 results. Use the next_page_token to get more results
-	//for (i=0; i < cardId.length; i++){
-        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[200] + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E"
+	//for (i=0; i < 5; i++){
+		//bars - 40
+        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[40] + "&key=AIzaSyAnP96C4pRrqEGJA-GxmQYr2pJaFb9lYfU"
 
 		// Ajax call that pulls the data from the api
 		$.ajax({
@@ -67,16 +70,20 @@ function googlePlacesPull() {
 		console.log(data);
 		console.log(data.photos[0].photo_reference);
 
-		var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + data.photos[0].photo_reference + "&key=AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E";
+		var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + data.photos[0].photo_reference + "&key=AIzaSyAnP96C4pRrqEGJA-GxmQYr2pJaFb9lYfU";
 
-		console.log(imgURL);
+		console.log("IMG URL:" + imgURL);
 
-		dbQuery.ref('bars').child(cardId[200]).child('image').set(imgURL);
+		dbQuery.ref('restaurants').child(cardId[39]).child('image').set(imgURL);
 
 		})
+		.error(function(error) {
+	       	console.log(error);
+		 });
 	//}
 }
 
+//old key: AIzaSyBBH_dVCGulO-Q4XVW2VVGPhjv-Q5J8i5E
 // // ===== 2ND function that pulls the data from the first petStores search and populates more detailed data =====
 
   // function googleImages() {
