@@ -490,13 +490,14 @@
 
     <!-- Templating Using Underscore Library -->
      <script type="text/template" id="cardsResults">
-        <div class="col s12 m4 l4">
+        <div class="col m12 m4 l4">
             <div class="card" id="<%= card.cardId %>">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">
-                     <span class="card-title"><%= card.cardName %> </span>
-                </div>
-               
+                <h1 class="card-title" align="center" ><%= card.cardName %> </h1>
+                <!--commenting this out since the image are hosted else where-->
+                <!--<div class="card-image waves-effect waves-block waves-light">-->
+                    <!--<img class="activator cardImage" src="<%= cardImgURL %>" alt="search-image">-->
+                <!--</div>-->
+
                 <div class="card-content text_b">
                     <p class="card-info">Distance: <%= card.cardDistance %> mi.</p>
                     <p class="card-info"><%= card.cardAddress %> </p>
