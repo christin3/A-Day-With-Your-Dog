@@ -1,11 +1,12 @@
 // ========Initialize Firebase=========
 
 var config = {
-    apiKey: "AIzaSyAv-6bOhqHPkkst-Aw7ULPb-xvTqHqTpeo",
-    authDomain: "bars-backup.firebaseapp.com",
-    databaseURL: "https://bars-backup.firebaseio.com",
-    storageBucket: "bars-backup.appspot.com",
-    messagingSenderId: "149078553518"
+    apiKey: "AIzaSyAAoIgLQseYdh9fYkz0PMw-n7J2TUtWB4I",
+    authDomain: "day-with-your-dog-28aad.firebaseapp.com",
+    databaseURL: "https://day-with-your-dog-28aad.firebaseio.com",
+    projectId: "day-with-your-dog-28aad",
+    storageBucket: "day-with-your-dog-28aad.appspot.com",
+    messagingSenderId: "536513849790"
 };
 firebase.initializeApp(config);
 
