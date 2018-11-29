@@ -22,7 +22,7 @@ var dbQuery = firebase.database();
 var pos;
 // Because our map is at a zoom of 13 which is 2 miles, 2 miles in km is 3.21869 Km / 2 = 1.609345
 // Will use this radius to determine what results are populated into the map and cards (only this <= this radiu)
-var resultRadius = 5; // distance in miles or our user location
+var resultRadius = 1; // distance in miles or our user location
 // var resultsArray = [];
 var map;
 var locationMarkers = [];
