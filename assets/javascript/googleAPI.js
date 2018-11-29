@@ -50,7 +50,7 @@ function googlePlacesPull() {
 	// This current search will only yeild 19 results. Use the next_page_token to get more results
 	//for (i=0; i < 5; i++){
 		//bars - 40
-        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[40] + "&key=AIzaSyAnP96C4pRrqEGJA-GxmQYr2pJaFb9lYfU"
+        var queryURL= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2672,-97.7431&radius=50000&keyword=" + cardId[25] + "&key=AIzaSyAnP96C4pRrqEGJA-GxmQYr2pJaFb9lYfU"
 
 		// Ajax call that pulls the data from the api
 		$.ajax({
@@ -75,7 +75,7 @@ function googlePlacesPull() {
 
 		console.log("IMG URL:" + imgURL);
 
-		dbQuery.ref('restaurants').child(cardId[39]).child('image').set(imgURL);
+		dbQuery.ref('restaurants').child(cardId[24]).child('image').set(imgURL);
 
 		})
 		.error(function(error) {

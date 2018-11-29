@@ -216,7 +216,7 @@ function deg2rad(degrees) {
 function showMarkers() {
     // var bounds = new google.maps.LatLngBounds();
     // Extend the boundaries of the map for each marker and display the marker
-    for (var i = 0; i < locationMarkers.length; i++) {
+    for (var i = 0; i < locationMarkers.length; 20) {
         locationMarkers[i].setMap(map);
         // bounds.extend(locationMarkers[i].position);
         makeDogIcon(category);

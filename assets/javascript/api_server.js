@@ -4,7 +4,7 @@
 //  ======= YELP API NODE CALL ===============
 // Request API access: http://www.yelp.com/developers/getting_started/api_access
 
-var Yelp = require('yelp');
+var Yelp = require('yelp-fusion');
 
 var config = require('./config.json');
 
@@ -37,7 +37,7 @@ for (var k = 0; k < AustinZipcodes.length; k++){
 
 	for (var j = 0; j < 25; j++){
 		//See http://www.yelp.com/developers/documentation/v2/search_api
-		yelp.search({ term: 'bars dogs allowed', location: zipcode, limit: j})
+		yelp.search({ term: 'dogs allowed', location: zipcode, is_closed: false})
 		.then(function (data) {
 			console.log(data);
 			var results = data.businesses;
