@@ -68,9 +68,6 @@ input[type=text], input[type=email] {
    .input-field .prefix.active {
      color: white;
    }
-h1{
-    color: white;
-}
 
 .card .card-title {
     color: #000;
