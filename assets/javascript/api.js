@@ -27,7 +27,7 @@ var dbQuery = firebase.database();
 var pos;
 // Because our map is at a zoom of 13 which is 2 miles, 2 miles in km is 3.21869 Km / 2 = 1.609345
 // Will use this radius to determine what results are populated into the map and cards (only this <= this radiu)
-var resultRadius = 1; // distance in miles or our user location
+//var resultRadius = 1; // distance in miles or our user location
 // var resultsArray = [];
 var map;
 var locationMarkers = [];
@@ -273,7 +273,7 @@ function getData() {
                 var distance = getDistanceInKm(lat2, lng2);
                 // console.log("This is the distance from user location to bar: " + distance);
                 //if logic to take the bar child if the radius is <= to result Radius and display on the page it if is
-                if (distance <= resultRadius) {
+                if (distance <= 1) {
                     // console.log("This is ID of the " + category + " closest to you: " + JSON.stringify(childSnapshot.val().id));
                     // console.log("This is the " + category + " closest to you: " + JSON.stringify(childSnapshot.val()));
                     // console.log("------------------------------");
