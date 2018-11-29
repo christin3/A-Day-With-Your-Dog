@@ -346,7 +346,7 @@ function getData() {
                     // Targeting the underscore template housed in the html
                     var cardsTemplate = _.template($('#cardsResults').html());
                     //$('#cardsAppearHere').append(cardsTemplate({card: card}));
-                    $('#cardsAppearHere').append(cardsTemplate(card));
+                    $('#cardsAppearHere').filter(":even").append(cardsTemplate(card));
                     console.log(cardsTemplate);
                     // ======= END TEMPLATE CREATION ============== 
 
