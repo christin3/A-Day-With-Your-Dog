@@ -35,7 +35,7 @@ var AustinZipcodes = ['78701', '78702', '78703', '78704', '78705', '78710', '787
 for (var k = 0; k < AustinZipcodes.length; k++){
 	var zipcode = AustinZipcodes[k];
 
-	for (var j = 0; j < 50; j++){
+	for (var j = 0; j < 25; j++){
 		//See http://www.yelp.com/developers/documentation/v2/search_api
 		yelp.search({ term: 'bars dogs allowed', location: zipcode, limit: j})
 		.then(function (data) {
